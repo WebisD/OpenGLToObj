@@ -28,6 +28,7 @@ ObjMaker::ObjMaker(char* path_name, char* name, int num_vertices, float vertices
     this->vertices_array = vertices_array;
     this->num_normals = num_normals;
     this->num_triangles = num_triangles;
+    this->triangles_list = (GLMtriangle*)malloc(sizeof(GLMtriangle)*this->num_triangles);
     triangles_list_index = 0;
 }
 
@@ -40,7 +41,7 @@ void ObjMaker::create_obj(){
     this->model = (GLMmodel*)malloc(sizeof(GLMmodel));
 
     this->model->pathname = this->path_name;
-    this->model->mtllibname = nullptr;
+    this->model->mtllibname = NULL;
 
     this->model->numvertices = this->num_vertices;
 
@@ -53,7 +54,7 @@ void ObjMaker::create_obj(){
     this->model->vertices = vert;
 
     this->model->numnormals = this->num_normals;
-    this->model->normals = nullptr;
+    this->model->normals = NULL;
 
     this->model->numtexcoords = 0;
 
@@ -76,7 +77,7 @@ void ObjMaker::create_obj(){
 		tri[i] = i;
 	}
     grupos->triangles = tri;
-    grupos->next = nullptr;
+    grupos->next = NULL;
 
     this->model->groups = grupos;
 
@@ -98,5 +99,5 @@ void ObjMaker::create_triangle(int tri_index_a, int tri_index_b, int tri_index_c
     
     triangle.findex = 0;
     
-    triangles_list[triangles_list_index++] = triangle;
+    this->triangles_list[triangles_list_index++] = triangle;
 }
