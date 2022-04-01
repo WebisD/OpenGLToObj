@@ -1,5 +1,5 @@
 #include "glm.h"
-#include <iostream>
+#include <stdio.h>
 
 class ObjMaker{
     private:
